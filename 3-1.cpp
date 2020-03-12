@@ -35,7 +35,6 @@ int findWords(char* str, char** arr)
 		num++;
 		p += length;
 	}
-	freeMemory(arr, N);
 	return num;
 }
 
