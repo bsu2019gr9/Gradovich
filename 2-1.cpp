@@ -19,9 +19,7 @@ void inputArray(int** p, int N, int M) {
 	cout << "\nEnter elements\n";
 	for (size_t i = 0; i < N; i++) {
 		for (size_t j = 0; j < M; j++) {
-			int a;
-			cin >> a;
-			p[i][j] = a;
+			cin >> p[i][j];
 		}
 	}
 }
@@ -43,7 +41,7 @@ void printArray(int** p, int N, int M) {
 
 void freeArr(int*& p) { delete[] p;  p = nullptr; };
 
-void removeZeroRows(int** p, int N, int M)
+int removeZeroRows(int** p, int N, int M)
 {
 	int f = 0;
 	for (int i = 0; i < N; i++)
@@ -53,15 +51,31 @@ void removeZeroRows(int** p, int N, int M)
 				f++;
 			}
 		}
-		if (f == M) {
-			freeArr(p[i]);
-			for (int k = i; k < N - 1; k++) {
-				p[k] = p[k + 1];
-			}
-			f = 0;
-		}	
+
+		if (f == M && i != N - 1) {
+			--N;
+			int* tmp = p[i];
+			for (int j = i; j < N; j++)
+				p[j] = p[j + 1];
+			p[N] = nullptr; 
+			delete[] tmp;
+			tmp = nullptr; 
+			i--;
+		}
+
+		else if (f == M && i == N - 1) {
+			--N;
+			int* tmp = p[i];
+			p[i] = nullptr;
+			delete[] tmp;
+			tmp = nullptr;
+			i--;
+		}
+		f = 0;
 	}
+	return N;
 }
+
 
 int main() {
 	srand(time(0));
@@ -74,6 +88,8 @@ int main() {
 	inputArray(dest, N, M);
 	printArray(dest, N, M);
 	cout << "\nArray without zero rows \n";
-	removeZeroRows(dest, N, M);
-	freeMemory(dest, N);
+	int newN = removeZeroRows(dest, N, M);
+	cout << newN;
+	printArray(dest, newN, M);
+	freeMemory(dest, newN);
 }
