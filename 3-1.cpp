@@ -21,7 +21,7 @@ int findWords(char* str, char** arr)
 {
 	char* p = str;
 	char str1[] = ".,:;`-()!?/ \t";
-	for (int i = 0; *p; ++i)
+	for (int i = 0; *p; i++)
 	{
 		p += strspn(p, str1);
 		int length = strcspn(p, str1);
@@ -56,15 +56,20 @@ void printModifiedString(char** word) {
 		}
 		else
 		{
-			memset(word[i], '*', strlen(word[i]));
-			memset(word[i + 1], '*', strlen(word[i + 1]));
-			cout << word[i] << ' ';
-			cout << word[i + 1] << ' ';
+			for (int k = 0; k < strlen(word[i]); ++k) {
+				cout << "*";
+			}
+			cout << ' ';
+			for (int k = 0; k < strlen(word[i+1]); ++k) {
+				cout << "*";
+			}
+			cout << ' ';
 		}
 	}
 }
 
 int main() {
+	setlocale(LC_ALL, "Russian");
 	const int N(100);
 	char tmp[MAX];
 	char* word[N];
