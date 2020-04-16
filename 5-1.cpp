@@ -36,6 +36,7 @@ public:
 	float getValueAt(int row, int col);//получение значения элемента матрицы
 	bool operator==(Matrix2d& mtrx);//сравнение матриц
 	float countDeterminant();//подсчет определителя
+	bool isUnit(Matrix2d& mtrx);//единичная матрица или нет
 };
 
 //-----------------------------------------------------------
@@ -65,6 +66,10 @@ int main() {
 	a = b;
 	cout << (a == b) << "\n";
 	cout << (c == b) << "\n";
+	Matrix2d r;
+	r.initMatrix(1, 0, 0, 1);
+	cout << r << "\n\n";
+	cout <<"\n" <<r.isUnit(r);
 	
 	delete[] p;
 
@@ -300,4 +305,9 @@ float Matrix2d::countDeterminant() {
 	float det = 0;
 	det = arr[0][0] * arr[1][1] - arr[0][1] * arr[1][0];
 	return det;
+}
+
+bool Matrix2d::isUnit(Matrix2d& mtrx) {
+	if (mtrx.arr[0][0] == 1 && mtrx.arr[0][1] == 0 && mtrx.arr[1][0] == 0 && mtrx.arr[1][1] == 1) return true;
+	else return false;
 }
