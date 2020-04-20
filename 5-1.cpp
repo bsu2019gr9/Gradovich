@@ -9,17 +9,17 @@ using namespace std;
 
 class Matrix2d {
 private:
-	const int N = 2, M = 2;
+	const int N = 2, M = 2;//попытка реализовать матрицы N x M но операции сделаны только для квадратных (там везде N)!!!
 	float **arr;
 public:
 	Matrix2d();//конструктор без параметров
-	Matrix2d(int N, int M);//конструктор с параметрами
+	Matrix2d(int N, int M);//конструктор с параметрами (странные параметры, которые нигде не проверяются)на валидность)
 	Matrix2d(const Matrix2d& mtrx);//конструктор копирования
 	~Matrix2d();//деструктор
 	void initRandMatrix();//инициализация рандомными числами
-	void initMatrix(float a, float b, float c, float d);//инициализация заданными числами
+	void initMatrix(float a, float b, float c, float d);//инициализация заданными числами (для матрицы N x M ????)
 	friend ostream& operator<<(ostream& out, const Matrix2d& mtrx);//оператор вывода
-	friend istream& operator>>(istream& in, Matrix2d& mtrx);//оператиор ввода
+	friend istream& operator>>(istream& in, Matrix2d& mtrx);//оператор ввода
 	const Matrix2d operator=(const Matrix2d& mtrx); //оператор присваивания
 	Matrix2d operator+(float number);//сложение с числом
 	Matrix2d operator+(Matrix2d& mtrx);//сложение с матрицей
@@ -160,7 +160,7 @@ void Matrix2d::initMatrix(float a, float b, float c, float d)
 			 this->arr[i][j] = mtrx.arr[i][j];
 	  return *this;
   }
-
+//есть каноничсекий способ!!!! Сначала реализуешь +=, а оператор + потом!!!  Type tmp(lhs);  return tmp += rhs;
   Matrix2d Matrix2d::operator+(float number)
   {
 	  Matrix2d res;
@@ -201,7 +201,7 @@ Matrix2d Matrix2d::operator+=(Matrix2d& mtrx) {
 	return *this;
 }
 
-
+//есть каноничсекий способ!!!! Сначала реализуешь +=, а оператор + потом!!!  Type tmp(lhs);  return tmp += rhs;
 Matrix2d Matrix2d::operator-(float number) {
 	Matrix2d res;
 	for (int i = 0; i < N; ++i) {
@@ -211,7 +211,7 @@ Matrix2d Matrix2d::operator-(float number) {
 	}
 	return res;
 }
-
+//есть каноничсекий способ!!!! Сначала реализуешь +=, а оператор + потом!!!  Type tmp(lhs);  return tmp += rhs;
 Matrix2d Matrix2d::operator-(Matrix2d& mtrx) {
 	Matrix2d res;
 	for (int i = 0; i < N; ++i) {
@@ -221,7 +221,7 @@ Matrix2d Matrix2d::operator-(Matrix2d& mtrx) {
 	}
 	return res;
 }
-
+//есть каноничсекий способ!!!! Сначала реализуешь +=, а оператор + потом!!!  Type tmp(lhs);  return tmp += rhs;
 Matrix2d Matrix2d::operator-=(float number) {
 	for (int i = 0; i < N; ++i) {
 		for (int j = 0; j < M; ++j) {
@@ -230,7 +230,7 @@ Matrix2d Matrix2d::operator-=(float number) {
 	}
 	return *this;
 }
-
+//есть каноничсекий способ!!!! Сначала реализуешь +=, а оператор + потом!!!  Type tmp(lhs);  return tmp += rhs;
 Matrix2d Matrix2d::operator-=(Matrix2d& mtrx){
 	for (int i = 0; i < N; ++i) {
 		for (int j = 0; j < M; ++j) {
