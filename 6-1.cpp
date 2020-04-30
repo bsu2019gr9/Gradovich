@@ -1,4 +1,3 @@
-//горизонтальный, вертикальный, попытка в диагональный
 #include <iostream>
 #include <fstream>   
 using namespace std;
@@ -11,10 +10,9 @@ int main() {
 	char tmp[255];
 	int width, height;
 	int oldR, oldG, oldB, newR, newG, newB;
-	int steps = 252;
+	int steps = 128;
 	float rstep, gstep, bstep, widthSteps, tmpWidthSteps, heightSteps, tmpHeightSteps;
 	int menu;
-	int k, n;
 
 	ifstream fffff("d:\\1.bmp", ios::binary);
 	ofstream ggggg("d:\\rez.bmp", ios::binary);
@@ -104,18 +102,18 @@ int main() {
 		}
 		break;
 
+		
 		//вертикально снизу вверх
 	case 3:
-		k = 0;
 		for (int i = 1; i <= height; ++i) {
 			for (int j = 1; j <= width; ++j) {
 				ggggg.write((char*)&cl, sizeof(cl));
 			}
-			if (steps >= k) {
+			if (i == heightSteps) {
 				tmpR += rstep;
 				tmpG += gstep;
 				tmpB += bstep;
-				k++;
+				heightSteps += tmpHeightSteps;
 			}
 			cl.r = tmpR;
 			cl.g = tmpG;
@@ -125,7 +123,6 @@ int main() {
 
 		//вертикально сверху вниз
 	case 4:
-		n = 0;
 		tmpR = newR;
 		tmpG = newG;
 		tmpB = newB;
@@ -133,11 +130,11 @@ int main() {
 			for (int j = 1; j <= width; ++j) {
 				ggggg.write((char*)&cl, sizeof(cl));
 			}
-			if (steps >= n) {
+			if (i==heightSteps) {
 				tmpR -= rstep;
 				tmpG -= gstep;
 				tmpB -= bstep;
-				n++;
+				heightSteps += tmpHeightSteps;
 			}
 			cl.r = tmpR;
 			cl.g = tmpG;
@@ -146,7 +143,6 @@ int main() {
 		break;
 
 	case 5://доработаю
-		int m = 0;
 		for (int i = 1; i <= height; ++i) {
 			for (int j = 1; j <= width; ++j) {
 				if (j == widthSteps) {
@@ -160,12 +156,11 @@ int main() {
 				cl.b = tmpB;
 				ggggg.write((char*)&cl, sizeof(cl));
 			}
-			if (m <= heightSteps) {
+			if (i == heightSteps) {
 				tmpR += rstep;
 				tmpG += gstep;
 				tmpB += bstep;
 				heightSteps += tmpHeightSteps;
-				m++;
 			}
 			tmpR = tmpR;
 			tmpG = tmpG;
