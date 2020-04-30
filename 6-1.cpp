@@ -1,3 +1,4 @@
+//горизонтальныйб вертикальныйб попытка в диагональный
 #include <iostream>
 #include <fstream>   
 using namespace std;
