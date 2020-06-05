@@ -6,35 +6,35 @@
 using namespace std;
 
 
-void getListOfStudents(Student*);//вывести список студентов
+void getListOfStudents(Student*);//РІС‹РІРµСЃС‚Рё СЃРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ
 void getListOfStudentsOfGroup(Student*, int);
 void getListOfStudentsOfCourse(Student*, int);
 
-void showStudentsWithGoodMarks(Student*);//показать студентов с "хорошими" оценками
-void showStudentsWithWellMarks(Student*);//показать студентов с "отличными" оценками
-void showStudentsWithSatisfactoryMarks(Student*);//показать студентов с положительными оценками
-void showStudentsWithUnsatisfactoryMarks(Student*);//показать студентов с отрицательными оценками
+void showStudentsWithGoodMarks(Student*);//РїРѕРєР°Р·Р°С‚СЊ СЃС‚СѓРґРµРЅС‚РѕРІ СЃ "С…РѕСЂРѕС€РёРјРё" РѕС†РµРЅРєР°РјРё
+void showStudentsWithWellMarks(Student*);//РїРѕРєР°Р·Р°С‚СЊ СЃС‚СѓРґРµРЅС‚РѕРІ СЃ "РѕС‚Р»РёС‡РЅС‹РјРё" РѕС†РµРЅРєР°РјРё
+void showStudentsWithSatisfactoryMarks(Student*);//РїРѕРєР°Р·Р°С‚СЊ СЃС‚СѓРґРµРЅС‚РѕРІ СЃ РїРѕР»РѕР¶РёС‚РµР»СЊРЅС‹РјРё РѕС†РµРЅРєР°РјРё
+void showStudentsWithUnsatisfactoryMarks(Student*);//РїРѕРєР°Р·Р°С‚СЊ СЃС‚СѓРґРµРЅС‚РѕРІ СЃ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹РјРё РѕС†РµРЅРєР°РјРё
 
-int countStudentsWithUnsatisfactoryMarksForGroup(Student*, int);//подсчет количества студентов с неудотворительными оценками для группы
-int countStudentsWithUnsatisfactoryMarksForCourse(Student*, int);//подсчет количества студентов с неудотворительными оценками для курса
+int countStudentsWithUnsatisfactoryMarksForGroup(Student*, int);//РїРѕРґСЃС‡РµС‚ РєРѕР»РёС‡РµСЃС‚РІР° СЃС‚СѓРґРµРЅС‚РѕРІ СЃ РЅРµСѓРґРѕС‚РІРѕСЂРёС‚РµР»СЊРЅС‹РјРё РѕС†РµРЅРєР°РјРё РґР»СЏ РіСЂСѓРїРїС‹
+int countStudentsWithUnsatisfactoryMarksForCourse(Student*, int);//РїРѕРґСЃС‡РµС‚ РєРѕР»РёС‡РµСЃС‚РІР° СЃС‚СѓРґРµРЅС‚РѕРІ СЃ РЅРµСѓРґРѕС‚РІРѕСЂРёС‚РµР»СЊРЅС‹РјРё РѕС†РµРЅРєР°РјРё РґР»СЏ РєСѓСЂСЃР°
 
-void appointScholarship(Student*);//назначение стипендии относительно среднего балла
+void appointScholarship(Student*);//РЅР°Р·РЅР°С‡РµРЅРёРµ СЃС‚РёРїРµРЅРґРёРё РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ СЃСЂРµРґРЅРµРіРѕ Р±Р°Р»Р»Р°
 
-void sortArrayRegardingAverageMark(Student*);//сортировка по убыванию относительно среднего балла
-void sortArrayRegardingCourse(Student*);//сортировка относительно курса
-void sortArrayRegardingScholarship(Student*);//сортировка относительно стипендии
-void sortArrayByCourseAndScholarship(Student*);//сортировка относительно курса и стипендии
+void sortArrayRegardingAverageMark(Student*);//СЃРѕСЂС‚РёСЂРѕРІРєР° РїРѕ СѓР±С‹РІР°РЅРёСЋ РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ СЃСЂРµРґРЅРµРіРѕ Р±Р°Р»Р»Р°
+void sortArrayRegardingCourse(Student*);//СЃРѕСЂС‚РёСЂРѕРІРєР° РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РєСѓСЂСЃР°
+void sortArrayRegardingScholarship(Student*);//СЃРѕСЂС‚РёСЂРѕРІРєР° РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ СЃС‚РёРїРµРЅРґРёРё
+void sortArrayByCourseAndScholarship(Student*);//СЃРѕСЂС‚РёСЂРѕРІРєР° РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РєСѓСЂСЃР° Рё СЃС‚РёРїРµРЅРґРёРё
 
-void sortArrayInAlphabeticalOrderRegardingToWellStatus(Student*);//сортировка в алфавитном порядке
-void showListOfWellStudents(Student*);//вывод отличников
-float countPercentOfWellStudentsForCourse(Student*, int);//подсчет процента отличников для курса среди всего коичества отличников
+void sortArrayInAlphabeticalOrderRegardingToWellStatus(Student*);//СЃРѕСЂС‚РёСЂРѕРІРєР° РІ Р°Р»С„Р°РІРёС‚РЅРѕРј РїРѕСЂСЏРґРєРµ
+void showListOfWellStudents(Student*);//РІС‹РІРѕРґ РѕС‚Р»РёС‡РЅРёРєРѕРІ
+float countPercentOfWellStudentsForCourse(Student*, int);//РїРѕРґСЃС‡РµС‚ РїСЂРѕС†РµРЅС‚Р° РѕС‚Р»РёС‡РЅРёРєРѕРІ РґР»СЏ РєСѓСЂСЃР° СЃСЂРµРґРё РІСЃРµРіРѕ РєРѕРёС‡РµСЃС‚РІР° РѕС‚Р»РёС‡РЅРёРєРѕРІ
 
-void writeToFile(const char[100], Student*&);//запись в файл
-void readFromFile(const char[100], Student*&);//чтение из файла
+void writeToFile(const char[100], Student*&);//Р·Р°РїРёСЃСЊ РІ С„Р°Р№Р»
+void readFromFile(const char[100], Student*&);//С‡С‚РµРЅРёРµ РёР· С„Р°Р№Р»Р°
 
 void task1(Student*, int);
 void task2(Student*);
 void task3(Student*);
 void task7(Student*);
 
-void menu(Student*);//меню
+void menu(Student*);//РјРµРЅСЋ
